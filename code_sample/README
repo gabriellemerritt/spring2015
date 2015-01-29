@@ -1,0 +1,1 @@
+Following Code samples are for a Texas Instrument Tiva micro controller to control a dynamixel servo motor via UART. dymxl.c is a library of functions to send and receive data  to and from the dynamixel servo
