@@ -13,7 +13,6 @@ addpath('trajectories')
 
 % trajectory generator
 trajhandle = @circle;
-
 % controller
 controlhandle = @controller;
 

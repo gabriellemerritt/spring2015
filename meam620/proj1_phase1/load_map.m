@@ -100,6 +100,8 @@ map{1,3}= [xy_res z_res];
 map{1,4} = x_grid; 
 map{1,5} = y_grid; 
 map{1,6} = z_grid; 
+map{1,7}=[ xmin ymin zmin xmax ymax zmax r g b ];  
+map{1,8} = board_bound; 
 
 end
     

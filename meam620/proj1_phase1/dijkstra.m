@@ -101,6 +101,7 @@ else
     end
     path(1,:) = start; 
     path(end,:) = goal;
+    scatter3(path(:,1),path(:,2),path(:,3),'g');
 
 end
 
