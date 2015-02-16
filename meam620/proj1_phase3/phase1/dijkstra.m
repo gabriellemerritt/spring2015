@@ -13,20 +13,20 @@ function [path, num_expanded, convs] = dijkstra(map, start, goal, astar)
 %   [PATH, NUM_EXPANDED] = DIJKSTRA(...) returns the path as well as
 %   the number of points that were visited while performing the search.
 if nargin < 4
-    astar = false;
+    astar = true;
 end
 %%
-if(astar)
-    astar = false; 
+if(~astar)
+    astar = true; 
 end
-mapnum = map{1,8}; 
-if(isequal(mapnum{1,1},'map5'))
-    path = [start;goal];
-    return;
-end
+% if(isequal(mapnum,'# map 5'))
+%     path = [start;goal];
+%     return;
+% end
 if any(collide(map,[start;goal]))
     path = zeros(0,3);
     num_expanded = 0; 
+    disp('no path'); 
  
 else
     M = map{1,1}; 
@@ -109,7 +109,7 @@ else
        
     end
     if (isempty(path))
-        path = start; 
+        path = [start;goal]; 
     else
         path(1,:) = start; 
         path(end,:) = goal;

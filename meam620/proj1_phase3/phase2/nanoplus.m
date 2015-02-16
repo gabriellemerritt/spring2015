@@ -37,7 +37,7 @@ params.kdx = 6*3;
 params.kpy =15*2; 
 params.kdy =6*3; 
 params.kpz =15*2;
-params.kdz =3*2; 
+params.kdz =4*2.5; 
 %% lift
 params.km = km;
 params.kf = kf;  

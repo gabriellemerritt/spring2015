@@ -7,29 +7,37 @@ if isempty(Graph)
 end
 nodes = unique(Graph(:,1:2));
 n = max(nodes); 
-vertex_list = [1:n]'; 
+% vertex_list = [1:n]'; 
 G = [Graph; Graph(:,[2 1 3 ])]; 
 G = sortrows(G,3); 
 [~, ia ,~] = unique(G(:,1:2),'rows','first'); 
 G = G(ia,:); 
 % h = [0;heu]; 
-h = heu; 
+h = heu'; 
 % n
 Dji_mat = sparse(G(:,1),G(:,2),G(:,3)); 
 
 node = start; 
 prev = NaN(max(nodes),1);
-dist = inf(max(nodes),1); 
+dist = inf(1,max(nodes)); 
 dist(start) = 0; 
 prev(start) = start;
 cost = 0;
 visited = []; 
-temp = inf(max(nodes),1);
+temp = zeros(1,max(nodes));
 ast = temp;
-for i=1:n    
+t0 = clock;
+test_vector = zeros(1,max(nodes));
+for i=1:n   
+    if(etime(clock,t0) > 450)
+        path = zeros(0,1); 
+        nv = 0;
+        return;
+    end
     if (dist(node) ~=inf)
-        weight_vector  = Dji_mat(:,node);
-        test_vector = ((weight_vector + dist(node)) < dist) &weight_vector; 
+        weight_vector  = Dji_mat(:,node)';
+        d = dist(node); 
+        test_vector = ((weight_vector + d) < dist) & weight_vector; 
         t = max(test_vector); 
         if (t)
             dist(test_vector) = dist(node)+ Dji_mat(node,test_vector); 

@@ -11,16 +11,26 @@ clc
 
 fileID =fopen(filename,'r'); 
 format_spec= '%s%f%f%f%f%f%f%f%f%f';
-C= textscan(fileID,format_spec);
-% C=textscan(fileID,format_spec, 'CommentStyle',{'#'});
-[board_bound, xmin, ymin, zmin, xmax,ymax, zmax,r,g,b] = C{1,:}; 
-if(any(board_bound{1,1} == '#'))
-    C = textscan(fileID,format_spec);
-    fclose(fileID); 
-    [board_bound, xmin, ymin, zmin, xmax,ymax, zmax,r,g,b] = C{1,:}; 
-else
-    fclose(fileID); 
+% C= textscan(fileID,format_spec);
+C=textscan(fileID,format_spec,'whitespace',' ', 'CommentStyle',{'#'});
+[board_bound, xmin, ymin, zmin, xmax, ymax, zmax,r,g,b] = C{1,:}; 
+XYZ = [xmin ymin zmin xmax ymax zmax]; 
+for l = 1:length(board_bound)
+    fix =strsplit(board_bound{l,1},{'k','y'}); 
+
+    if(~isequal(fix{1,2},''))
+       hack = str2double(fix{1,2});
+       fix2 = [hack XYZ(l,1:end -1)];
+       XYZ(l,:) = fix2;
+    end
 end
+% if(any(board_bound{1,1} == '#'))
+%     C = textscan(fileID,format_spec);
+%     fclose(fileID); 
+%     [board_bound, xmin, ymin, zmin, xmax,ymax, zmax,r,g,b] = C{1,:}; 
+% else
+    fclose(fileID); 
+% end
 r = r/255;
 g = g/255; 
 b = b/255; 
@@ -28,7 +38,9 @@ b = b/255;
 %plot grid
 idx = 0 ; 
 for i=1:length(board_bound)
-    if(isequal(board_bound{i,1},'boundary'))
+    bon = strfind(board_bound{i,1},'boundar');
+    if(~isempty(bon))
+          
 %           voxel([xmin(i),ymin(i),zmin(i)], [xmax(i)-xmin(i),ymax(i)-ymin(i),zmax(i)-zmin(i)],[0 1 1],0);
           idx = i; 
 %           continue; 
@@ -40,6 +52,12 @@ for i=1:length(board_bound)
 end
 %% 
    
+xmin = XYZ(:,1); 
+ymin = XYZ(:,2); 
+zmin = XYZ(:,3); 
+xmax = XYZ(:,4); 
+ymax = XYZ(:,5); 
+zmax = XYZ(:,6); 
 
 x_grid = xmin(idx):xy_res:xmax(idx);
 y_grid = ymin(idx):xy_res:ymax(idx); 
@@ -69,7 +87,8 @@ end
 % Occupancy Grid
 M = false(length(x_grid), length(y_grid), length(z_grid));
 for(i=1:length(board_bound))
-    if(isequal(board_bound{i,1},'boundary')) 
+    bon = strfind(board_bound{i,1},'boundar');
+    if(~isempty(bon)) 
         continue; 
     end 
     mx = (xmin(i)-margin)<=x_grid & (xmax(i)+margin)>=x_grid; 
@@ -91,19 +110,27 @@ end
 % end
 
 %%
-
+data = [ xmin ymin zmin xmax ymax zmax]; 
 M = M(1:end-1,1:end-1,1:end-1); 
 map = cell(1,2); 
-
+c = cell(1,10); 
+for m =1:6
+    c{1,m+1} = data(:,m); 
+end
+c{1,1} = board_bound; 
 map{1,1} = M; 
-map{1,2} = C;
+map{1,2} = c;
 map{1,3}= [xy_res z_res]; 
 map{1,4} = x_grid; 
 map{1,5} = y_grid; 
 map{1,6} = z_grid; 
-map{1,7}=[ xmin ymin zmin xmax ymax zmax r g b ];  
-map{1,8} = board_bound;
+% map{1,7}=[ xmin ymin zmin xmax ymax zmax r g b ];  
+% map{1,8} = board_bound;
+map{1,7} = 0; 
+map{1,8} = 0; 
 map{1,9} = margin; 
+
+% map{1,10} = mapnum;
 
 end
     

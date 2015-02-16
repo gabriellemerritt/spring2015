@@ -6,12 +6,16 @@ addpath(genpath('./'));
 %% Plan path
 disp('Planning ...');
 map = load_map('maps/map1.txt', 0.1, 1, 0.25);
-% start = {[0.0  -4.9 0.2]};
-% stop  = {[6.0  18.0-6 3.0]};
+start = {[0.0  -4.9 0.2]};
+stop  = {[6.0  18.0-6 3.0]};
 % start = {[2.5  2.5 0.2]};
 % stop  = {[19.25  3.0 5.0]};
-start = {[5  -3 4]};
-stop  = {[6.0  18.0 3.0]};
+% start = {[5  -3 4]};
+% stop  = {[6.0  18.0 3.0]};
+% start = {[0.0  -4.9 0.2]};
+% stop  = {[23.0 8.0 6.0]};
+
+
 nquad = length(start);
 for qn = 1:nquad
 %     path{qn} = dijkstra(map, start{qn}, stop{qn}, true);

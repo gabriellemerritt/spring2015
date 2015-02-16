@@ -30,7 +30,7 @@ if nargin > 2
    path0 = path{1,1}; 
    lengths =[]; 
    for i =1:size(path0,1)-1 
-        lengths(i) = nthroot(norm(path0(i+1,:) -path0(i,:)),3)*1.5; 
+        lengths(i) = nthroot(norm(path0(i+1,:) -path0(i,:)),3)*1.35; 
    end
     tvector = [0 cumsum(lengths)];
     tf = tvector(end);
@@ -39,6 +39,33 @@ end
 % path = path_redux(path0,1); 
 % linspace <== find smallest res between x y and z res)
 
+if(isempty(path0))
+    pos = [0, 0,0]; 
+    vel = [0,0,0]; 
+    acc = [0,0,0]; 
+    yaw = 0;
+    yawdot = 0;
+    desired_state.pos = pos(:);
+    desired_state.vel = vel(:);
+    desired_state.acc = acc(:);
+    desired_state.yaw = yaw;
+    desired_state.yawdot = yawdot;
+    return; 
+end
+if ( t >= tvector)
+    pos = path0(end,:); 
+    vel = [0,0,0]; 
+    acc = [0,0,0]; 
+    yaw = 0;
+    yawdot = 0;
+    desired_state.pos = pos(:);
+    desired_state.vel = vel(:);
+    desired_state.acc = acc(:);
+    desired_state.yaw = yaw;
+    desired_state.yawdot = yawdot;
+    return; 
+end
+    
 i =1; 
 i2 = 2; 
 tz = 0;

@@ -68,6 +68,18 @@ else
          
     end 
     r_path = [path(1,:);red2;path(end,:)];
+%     for k =1:size(r_path,1) -1
+%       sampx = linspace(r_path(k,1),r_path(k+1,1),res)'; 
+%       sampy = linspace(r_path(k,2),r_path(k+1,2),res)'; 
+%       sampz = linspace(r_path(k,3),r_path(k+1,3),res)'; 
+%       s= [sampx sampy sampz]; 
+%       c = collide(map,s); 
+%       if(any(c))
+%           reduced_path = [path(1,:)];
+%           return;
+%       end
+%     end
+  
    reduced_path = unique(r_path, 'rows','stable'); 
     
 

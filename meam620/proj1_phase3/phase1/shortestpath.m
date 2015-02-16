@@ -23,21 +23,28 @@ cost = 0;
 visited = []; 
 for i=1:n    
     if (dist(node) ~=inf)
-        weight_vector  = Dji_mat(:,node);
+        weight_vector  = Dji_mat(node,:);
         % try  > 0 
-        test_vector = ((weight_vector + dist(node)) < dist) &weight_vector; 
-        if (any(test_vector))
-            dist(test_vector) = dist(node)+ Dji_mat(node,test_vector); 
-            prev(test_vector) = node;
+        for j = 1:length(weight_vector)
+            if (weight_vector(j))
+                test = weight_vector(j) + dist(node);
+                if (test < dist(j))
+                    dist(j)  = test; 
+                    prev(j) = node;
+                end
+            end
         end
+%         test_vector = ((weight_vector + dist(node)) < dist) &weight_vector; 
+%         if (any(test_vector))
+%             dist(test_vector) = dist(node)+ Dji_mat(node,test_vector); 
+%             prev(test_vector) = node;
+%         end
     end
     if (node == goal)
         break; 
     end
-   %  visited(node) = true; 
-     visited(i) = node; 
-%      too slow
-      % adj_vert(visited) = []; 
+   visited(i) = node; 
+        
    temp = dist; 
    temp(visited) = inf; 
    [~, idx] = min(temp); 
@@ -51,8 +58,6 @@ if cost == inf
     disp('No path to goal'); 
     path = zeros(0,1); 
     nv = length(visited) ;
-% elseif isempty(cost)
-%     path = zeros(0,1); 
 else
     path = findPath(prev, goal,start);
 nv = length(visited); 

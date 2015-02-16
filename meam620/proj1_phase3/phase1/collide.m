@@ -21,9 +21,10 @@ end
 
 boundCell =map{1,2};
 margin = map{1,9}; 
-[board_bound, xmin, ymin, zmin, xmax,ymax, zmax,r,g,b] = boundCell{1,:}; 
+[board_bound, xmin, ymin, zmin, xmax,ymax,zmax] = boundCell{1,:}; 
 for(j =1:length(board_bound))
-    if(isequal(board_bound{j,1},'boundary'))
+    bon = strfind(board_bound{j,1},'boundar');
+    if(~isempty(bon))
         idx =j; 
         break;
     end
