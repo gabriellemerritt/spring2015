@@ -1,0 +1,70 @@
+\documentclass[11pt,english]{article}
+
+%\usepackage[latin9]{inputenc}
+\usepackage[letterpaper]{geometry}
+\geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\newcommand{\rthree}{\mathbb{R}^3}
+\title{MEAM 620 Advanced Robotics: Homework 3\\
+Due: Wednesday, March 4, 2015,  11:59am }
+ \author{}
+ 
+\date{}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item
+(20pts) We have defined an edge point as a point where the gradient magnitude of the image $\| \nabla I \| $ reaches a local maximum along the gradient direction. This means that the derivative of $\| \nabla I \| $ along the gradient direction $\frac{\nabla I}{\| \nabla I \|}$ has a zero crossing. Compute 
+\[
+\nabla_\eta \| \nabla I \|
+\qquad \mbox{where} \qquad  \eta = \frac{\nabla I}{\| \nabla I \|} .
+\]
+ You have to know (look up) how to differentiate the magnitude of a vector $\| v \|$ with respect to the vector $v$. 
+
+\item
+(80pts)
+Let $M$ be the autocorrelation matrix of a corner detector 
+\[
+M = \sum_{(x,y)\in \mathcal{N}(x_0,y_0)}  \begin{pmatrix}
+I_x(x,y)^2 & I_x(x,y) I_y(x,y) \\ I_x(x,y) I_y(x,y) & I_y(x,y)^2\end{pmatrix}  .
+\]
+a. What will happen to the trace of the matrix if the image will be dilated $I'(x,y) = I(x/2,y/2)$.
+Assume that $I_x,I_y$ are the image derivatives directly (without any Gaussian convolution) and that the neighborhood of summation is double the original size. 
+\\
+b. What will happen to the trace of the matrix if the image will be rotated by 45$\deg$ ?
+\\
+c. Compute the eigenvalues of the matrix if the neighborhood contains only one straight edge at 45 degrees orientation:
+\[
+I(x,y) = \left\{
+	\begin{array}{ll}
+		1  & \mbox{if } x+y \geq 0 \\
+		0 & \mbox{if } x+y < 0
+	\end{array}
+\right.
+\]
+d. In this last question we want to see whether the big red rectangle is a better Harris corner than the small one. 
+% We will assume that the image reads
+% \begin{figure}[htb]
+% \centerline{\includegraphics[width=1in]{whiteRed.png}}
+% \end{figure}
+\[
+I(x,y) = \left\{
+	\begin{array}{ll}
+		1  & \mbox{if } x^2+y^2  \leq r\\
+		0 & \mbox{if } \mbox{otherwise}
+	\end{array}
+\right.
+\]
+yielding a  gradient in the direction of the radius $\nabla i = (\cos\theta,\sin\theta)$.
+The large rectangle extends for $\theta=0..\frac{\pi}{4}$ while the small rectangle extends for  $\theta=0..\frac{\pi}{8}$. Compute the autocorrelation matrix in both cases by replacing the sum with an integral, i.e., compute $\int\int \frac{\partial{I}}{\partial{x}}\,\,dxdy$, etc. Compute in both cases the trace and the determinant. Which of the rectangle interiors has more ``cornerness'' ?
+
+
+
+\end{enumerate}
+
+\end{document}
