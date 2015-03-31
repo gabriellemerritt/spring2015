@@ -43,20 +43,19 @@ $$
 \begin{table}[h]
 \begin{tabular}{|l|l|l|l|l|}
 K & $\sigma $&$ \omega_d$ &$ \omega_n $&$ \zeta$ \\
-1 & 0.065232138 & 23.0153308  & 23.01657113 & 0.010381458 \\
-2 & 0.11032051  & 28.954771   & 28.95923382 & 0.017555349 \\
-3 & 0.120529727 & 33.2443667  & 33.25048283 & 0.019179373 \\
-4 & 0.105618679 & 36.53014713 & 36.53530788 & 0.01680736 
+1 & -7.7756 & 22.9313 & 24.2138 & 0.3211        \\
+2 & -4.324  & 28.822  & 29.1446 & 0.14838       \\
+3 & -1.9209 & 33.069  & 33.1251 & 0.05799       \\
+4 & 0.0010  & 36.319  & 36.319  & -2.788021e-05
 \end{tabular}
 \end{table}
 \begin{figure}[h!]
-\includegraphics[width = \linewidth]{rlocusKcontroller.png}
+\includegraphics[width = \linewidth]{rlocus_kp.png}
 \caption{Root Locus for Transfer Function}
 \floatfoot{Using different Gains to see effect on pole position} 
 \end{figure}
 \FloatBarrier
-\paragraph{ }
-I am a little disconcerted as to why the points don't all lie on the root locus graph. The optimal proportional gain of 4 does, but it would make more sense for all of my poles for all my gains to lie somewhere on the root locus graph.
+
 \section{Closed loop control with Derivative Gain}
 Kd = .0257   
 To obtain this I used the damping ratio from my table as as well as my natural frequency to find kd. 
@@ -70,35 +69,37 @@ I found Kd using sgrid and rlocfind. S grid to locate the point on the root locu
 
 
 \section{Adding an Integral Term}
-Initial damp ratio - .0153 with$ K_I$ set to  0.  
+Initial damp ratio  $ = .0904$ with$ K_I$ set to  0.  
 For this part of the assignment I used the form 
 $$ D_p + K_pN(s) + sK_dN(s) + \frac{1}{s}K_IN(S) = 0 
 $$ 
 Where 
-$$ A(s) = D_P + K_pN(s) + sK_dN(s) $$ 
-$$ B(s) = 1/2N(s) $$
+$$ A(s) = D_P + s^2K_dN(s) + sK_pN(s) $$ 
+$$ B(s) = N(s) $$
 
-From this I constructed this root locus path,which doesn't seem to return a damping ratio half of$ K_I $= 0. 
+After generating a range of $K_I$ values  I go this root locus graph
 \begin{figure}[h!]
-\includegraphics[width = \linewidth]{faildr.png}
+\includegraphics[width = \linewidth]{rlocus_ki.png}
 \caption{PID transfer function}
 \floatfoot{Generated using Transfer function} 
 \end{figure}
 \FloatBarrier 
 
-I was able to extract a $K_I$ of $.0522$ but my damping constant remained the same 
+I was able to extract a $K_I$ of $22$  and a damping constant of $.0455$ 
 \begin{figure}[h!]
-\includegraphics[width = \linewidth]{failedplot.png}
-\caption{PID transfer function}
+\includegraphics[width = \linewidth]{ki_step0.png}
+\caption{step response with $K_I = 0 $}
+\floatfoot{Generated using Simulink}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[h!]
+\includegraphics[width = \linewidth]{ki_step.png}
+\caption{step response with $K_I$ of 22 }
 \floatfoot{Generated using Simulink} 
 \end{figure}
 \FloatBarrier 
-\begin{figure}[h!]
-\includegraphics[width = \linewidth]{faildr.png}
-\caption{PID transfer function}
-\floatfoot{Generated using Transfer functionl} 
-\end{figure}
-\FloatBarrier 
+
 
 \section{Neutral Stablilty using Simulink} 
 I started this section by modelling in Simulink the black box system with the time delay. 

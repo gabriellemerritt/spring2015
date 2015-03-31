@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  23 FEB 2015 10:12
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  17 MAR 2015 18:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -330,17 +330,16 @@ Package pdftex.def Info: simulink2.png used on input line 36.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [2 <./simlink1.png>] [3 <./simulink2.png>]
-<rlocusKcontroller.png, id=21, 1271.75125pt x 451.6875pt>
-File: rlocusKcontroller.png Graphic file (type png)
+<rlocus_kp.png, id=21, 652.4375pt x 477.785pt>
+File: rlocus_kp.png Graphic file (type png)
+ <use rlocus_kp.png>
+Package pdftex.def Info: rlocus_kp.png used on input line 53.
+(pdftex.def)             Requested size: 469.75502pt x 344.01952pt.
 
-<use rlocusKcontroller.png>
-Package pdftex.def Info: rlocusKcontroller.png used on input line 53.
-(pdftex.def)             Requested size: 469.75502pt x 166.84607pt.
- <sim3.png, id=22, 841.1425pt x 341.275pt>
+<sim3.png, id=22, 841.1425pt x 341.275pt>
 File: sim3.png Graphic file (type png)
-
-<use sim3.png>
-Package pdftex.def Info: sim3.png used on input line 65.
+ <use sim3.png>
+Package pdftex.def Info: sim3.png used on input line 64.
 (pdftex.def)             Requested size: 469.75502pt x 190.59195pt.
 
 
@@ -348,79 +347,78 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [4
 
- <./rlocusKcontroller.png (PNG copy)>]
-<faildr.png, id=27, 562.1pt x 420.57124pt>
-File: faildr.png Graphic file (type png)
- <use faildr.png>
-Package pdftex.def Info: faildr.png used on input line 83.
+ <./rlocus_kp.png (PNG copy)>] <rlocus_ki.png, id=27, 562.1pt x 420.57124pt>
+File: rlocus_ki.png Graphic file (type png)
+
+<use rlocus_ki.png>
+Package pdftex.def Info: rlocus_ki.png used on input line 82.
 (pdftex.def)             Requested size: 469.75502pt x 351.47415pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[5 <./sim3.png>] <failedplot.png, id=31, 562.1pt x 420.57124pt>
-File: failedplot.png Graphic file (type png)
+[5 <./sim3.png>] <ki_step0.png, id=31, 1042.89626pt x 389.455pt>
+File: ki_step0.png Graphic file (type png)
 
-<use failedplot.png>
-Package pdftex.def Info: failedplot.png used on input line 91.
-(pdftex.def)             Requested size: 469.75502pt x 351.47415pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[6 <./faildr.png (PNG copy)>]
-File: faildr.png Graphic file (type png)
- <use faildr.png>
-Package pdftex.def Info: faildr.png used on input line 97.
-(pdftex.def)             Requested size: 469.75502pt x 351.47415pt.
+<use ki_step0.png>
+Package pdftex.def Info: ki_step0.png used on input line 90.
+(pdftex.def)             Requested size: 469.75502pt x 175.42546pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[7 <./failedplot.png (PNG copy)>] [8]
-<rlocusnstable.png, id=42, 562.1pt x 420.57124pt>
+[6 <./rlocus_ki.png (PNG copy)>]
+<ki_step.png, id=35, 1058.95625pt x 399.4925pt>
+File: ki_step.png Graphic file (type png)
+ <use ki_step.png>
+Package pdftex.def Info: ki_step.png used on input line 97.
+(pdftex.def)             Requested size: 469.75502pt x 177.21584pt.
+
+<rlocusnstable.png, id=36, 562.1pt x 420.57124pt>
 File: rlocusnstable.png Graphic file (type png)
  <use rlocusnstable.png>
-Package pdftex.def Info: rlocusnstable.png used on input line 107.
+Package pdftex.def Info: rlocusnstable.png used on input line 108.
 (pdftex.def)             Requested size: 469.75502pt x 351.47415pt.
 
-<lownstable.png, id=43, 822.07124pt x 479.7925pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[7 <./ki_step0.png> <./ki_step.png>]
+<lownstable.png, id=41, 822.07124pt x 479.7925pt>
 File: lownstable.png Graphic file (type png)
  <use lownstable.png>
-Package pdftex.def Info: lownstable.png used on input line 114.
+Package pdftex.def Info: lownstable.png used on input line 115.
 (pdftex.def)             Requested size: 469.75502pt x 274.1654pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[9
-
- <./rlocusnstable.png (PNG copy)>]
-<nunstablelarge.png, id=47, 562.1pt x 420.57124pt>
+[8 <./rlocusnstable.png (PNG copy)>]
+<nunstablelarge.png, id=45, 562.1pt x 420.57124pt>
 File: nunstablelarge.png Graphic file (type png)
  <use nunstablelarge.png>
-Package pdftex.def Info: nunstablelarge.png used on input line 120.
+Package pdftex.def Info: nunstablelarge.png used on input line 121.
 (pdftex.def)             Requested size: 469.75502pt x 351.47415pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<highnstable.png, id=48, 562.1pt x 420.57124pt>
+<highnstable.png, id=46, 562.1pt x 420.57124pt>
 File: highnstable.png Graphic file (type png)
  <use highnstable.png>
-Package pdftex.def Info: highnstable.png used on input line 125.
+Package pdftex.def Info: highnstable.png used on input line 126.
 (pdftex.def)             Requested size: 469.75502pt x 351.47415pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[10 <./lownstable.png (PNG copy)>] [11 <./nunstablelarge.png (PNG copy)>]
-[12 <./highnstable.png (PNG copy)>] (./hw3_gmerritt.aux) ) 
+[9 <./lownstable.png (PNG copy)>] [10 <./nunstablelarge.png (PNG copy)>]
+[11 <./highnstable.png (PNG copy)>] (./hw3_gmerritt.aux) ) 
 Here is how much of TeX's memory you used:
- 3534 strings out of 493633
- 51080 string characters out of 3143378
- 111898 words of memory out of 3000000
- 6774 multiletter control sequences out of 15000+200000
+ 3539 strings out of 493633
+ 51119 string characters out of 3143378
+ 110898 words of memory out of 3000000
+ 6778 multiletter control sequences out of 15000+200000
  6869 words of font info for 29 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
  38i,9n,38p,307b,355s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -432,10 +430,10 @@ Here is how much of TeX's memory you used:
 exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2011/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2011/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>
-Output written on hw3_gmerritt.pdf (12 pages, 505514 bytes).
+Output written on hw3_gmerritt.pdf (11 pages, 550976 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
- 49 compressed objects within 1 object stream
+ 80 PDF objects out of 1000 (max. 8388607)
+ 47 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 
