@@ -1,5 +1,5 @@
  
-for i = 1:864
+for i = 1:length(data)
     sensor = data(i); 
     [pos,eul]=estimate_pose_handle(sensor); 
    P(i,:) = pos; 

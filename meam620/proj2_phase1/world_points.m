@@ -27,9 +27,9 @@ for i = 1:9
     end
      
 end 
-% plot(Wp.p2(1,:), Wp.p2(2,:),'*b')
-% hold on 
-% plot(Wp.p4(1,:), Wp.p4(2,:),'*r'); 
-% plot(Wp.p3(1,:), Wp.p3(2,:), '*g'); 
-% plot(Wp.p1(1,:),Wp.p1(2,:), '*y');
-% axis('equal'); 
+    plot(Wp.p2(1,:), Wp.p2(2,:),'*b')
+    hold on 
+    plot(Wp.p4(1,:), Wp.p4(2,:),'*r'); 
+    plot(Wp.p3(1,:), Wp.p3(2,:), '*g'); 
+    plot(Wp.p1(1,:),Wp.p1(2,:), '*y');
+    axis('equal'); 

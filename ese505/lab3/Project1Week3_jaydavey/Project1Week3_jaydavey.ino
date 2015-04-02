@@ -21,7 +21,7 @@ float bbOrangeV;
 int bbIndigoRaw;
 float bbIndigoV;
 float deltaT = 0.005; // time between digital updates
-float Kp = 1;//1.5;
+float Kp = .1;//1.5;
 float Kd = 0.0; //Kp*0.02; //Kd = 0;//
 float Ki = 0.0;//0.01;
 float errorV;
@@ -36,7 +36,7 @@ unsigned long dt;
 //
 void setup() {
   // initialize serial communications at 9600 bps:
-  Serial.begin(38400); 
+  Serial.begin(115200); 
   pinMode(bbOrangePin,OUTPUT);
   pinMode(5,OUTPUT);
 }
