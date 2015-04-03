@@ -22,7 +22,18 @@ function [vel, omg] = estimate_vel(sensor, varargin)
 %                  @(sensor) estimate_vel(sensor, your personal input arguments);
 %   vel - 3x1 velocity of the quadrotor in world frame
 %   omg - 3x1 angular velocity of the quadrotor
-
+persistent loop_num; 
+persistent corners; 
+persistent pointTracker;  
+if (loop_num ==1 )|| (corners < 200)  
+    corners = corner(sensor.img,1000);
+    pointTracker = vision.PointTracker; 
+    initialize(pointTracker,corners, sensor.img); 
+end 
+[tracked_points, valid] = step(pointTracker,sensor.img); 
+valid_points = tracked_points(valid,:s); 
+%% do transform to find Vx, Vy, Vz in real world from image
+%%need to find Depth 
 
 vel = zeros(3,1);
 omg = zeros(3,1);

@@ -1,18 +1,8 @@
 function corners = find_corners(data) 
 C = cell(size(data,2),1); 
 for j= 1:size(data,2) 
-    sensor = data(j);   
-    i = sensor.img; 
-
-    %Make image greyscale
-    if length(size(i)) == 3
-        im =  double(i(:,:,2));
-    else
-        im = double(i);
-    end
-    
-    cs = fast_corner_detect_9(im, 20);
-    c = fast_nonmax(im, 20, cs);
+    i = data(j).img; 
+    c = corner(i,1000); 
     C{j} = c; 
 
 end 
