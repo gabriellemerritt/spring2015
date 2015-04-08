@@ -8,9 +8,9 @@ addpath(genpath([curr_dir,'/data']))
 
 %% INITIALIZE THINGS
 init_script
-% load studentdata1
+load studentdata1
 % load studentdata4
-load studentdata9
+% load studentdata9
 
 
 % data, time, vicon

@@ -34,8 +34,8 @@ K = varargin{2};
 if ( isempty(sensor.id))
    counter = counter +1;
 
-    vel = []; 
-    omg = []; 
+    vel = zeros(3,1); 
+    omg = zeros(3,1); 
     t_old = sensor.t; 
 elseif (isempty(corners))  
     corners = corner(sensor.img,1000);
@@ -45,8 +45,8 @@ elseif (isempty(corners))
     track = [ corners ones(length(corners),1)]; 
     p_corners = (K)\track'; 
     counter = 1; 
-    vel = []; 
-    omg = []; 
+    vel = zeros(3,1); 
+    omg = zeros(3,1); 
     t_old = sensor.t; 
 else
    counter = counter +1;
@@ -147,11 +147,11 @@ else
     vel = Vw_c;
     omg = Ow_c;
     t_old = t_new; 
-   if (length(corners(valid,:))< 1000) 
+   if (1) 
         corners = corner(sensor.img,1000);
         pointTracker = vision.PointTracker; 
         initialize(pointTracker,corners, sensor.img);
-        track = [ corners ones(length(corners),1)]; 
+        track = [corners ones(length(corners),1)]; 
         p_corners = (K)\track';
   
         counter = 1; 
