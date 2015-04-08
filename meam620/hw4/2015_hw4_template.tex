@@ -1,0 +1,70 @@
+\documentclass[11pt,english]{article}
+
+\usepackage[latin9]{inputenc}
+\usepackage[letterpaper]{geometry}
+\geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{latexsym}
+\usepackage{xspace}
+\usepackage{pdflscape}
+\usepackage[hyphens]{url}
+\usepackage[colorlinks]{hyperref}
+\usepackage{enumerate}
+\usepackage{ifthen}
+\usepackage{float}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage{algorithm2e}
+
+\newcommand{\rthree}{\mathbb{R}^3}
+\title{MEAM 620 Advanced Robotics: Assignment 4\\
+Due:  Wednesday April 8th}
+ \author{}
+ 
+\date{}
+
+\begin{document}
+\maketitle
+In all the problems below, you might find a close problem in the literature. We recommend that you do not look into the literature. If you still commit the ``crime'' and find a solution in the literature, please cite the exact source you followed to write the solution. 
+No citation of the source will result in ZERO points. The problems are stated in such a way that we can see whether you followed a 3rd party solution (in most cases we ask for a specific unknown to be computed).
+
+
+\begin{enumerate}
+
+\item [40pts]
+ A circle has known radius $\rho$ and can be assumed to be in the $Z=0$ plane centered at $(0,0,0)$ origin of a world coordinate system. A quadrotor observes the circle as an ellipse in the image plane (this is not always the case but we assume that the quadrotor is sufficiently far). Compute the altitude ($Z$) of the quadrotor in the world coordinate system as well as its distance to the circle center. 
+Which other degree(s) of freedom of the quadrotor can be computed?
+
+\item[40pts]
+A quadrotor is in an environment with vertical lines (such as vertical edges of wall intersections) of known $(x,y)$ position (on the ground plane) in a 2D map.  The quadrotor is aligned so that the $Z$-axis of the camera is vertical in the world. Vertical lines in the world are then projected to lines through the image center. The only measurement in the image is the bearing $\beta_i$ of each line measured with respect to the image $x$-axis. Show how you can estimate the $(x,y)$ position of the camera in the 2D map given the projections $\beta_i$ of vertical lines with known map positions. How many lines suffice to compute the position? If your computation is geometric you still need to provide a formula for the estimated $(x,y)$ position of the camera. 
+
+
+\item[20pts]
+A robot knows the the gravity vector with respect to the camera coordinate system and the position of two points in world coordinates where $Y$-axis is aligned with gravity. 
+There is one unknown orientation $\theta$ in the unknown orientation matrix between camera and world coordinates. Assume that we have aligned the $Y$-axis of the camera with gravity so that the transformation from world to camera reads:
+\[
+\lambda \begin{pmatrix} x \\ y \\ 1 \end{pmatrix}  = \begin{pmatrix} \cos\theta & 0 & \sin\theta 
+\\ 0 & 1 & 0 
+\\ -\sin\theta & 0 & \cos\theta
+\end{pmatrix}
+ \begin{pmatrix} X \\ Y \\ Z \end{pmatrix} + \begin{pmatrix} t_x \\ t_y \\ t_z \end{pmatrix}.
+ \]
+Assume further that we know the projections of two points $(x_1,y_1)$ and $(x_2,y_2)$ 
+and the corresponding 3D world coordinates $(X_1,Y_1,Z_1)$ and $(X_2,Y_2,Z_2)$.
+After eliminating the depths $\lambda_i$ we have four equations with four unknowns 
+$(\theta,t_x,t_y,t_z)$.
+\begin{itemize}
+\item
+Express $\cos\theta$ and $\sin\theta$ so that there is only one unknown without a square-root.
+\item
+Translation unknowns appear linearly in the equations. Eliminate one or more of the translation unknowns and try to find an equation only with orientation as unknown.
+\end{itemize}
+\end{enumerate}
+
+\end{document}
