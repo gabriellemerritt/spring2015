@@ -50,7 +50,7 @@ A_t1 = varargin{3};
 U_t1 = varargin{4}; 
 Xd = varargin{5}; 
 
-if(isempty(mu)) 
+if(isempty(mu) && ~isempty(sensor)) 
     %estimate initial pose from vicon vel readings
     tv_old = vic.t; 
  
@@ -59,7 +59,10 @@ if(isempty(mu))
     Z = [est_pos ;est_eul];
     sig = eye(6); 
     mu = X; 
-else %% need to make a case where we have 0 vicon readings or 0 sensor
+else if (isempty(mu) && isempty(sensor)) 
+        X = []; 
+    
+else  %% need to make a case where we have 0 vicon readings or 0 sensor
     if (~isempty(vic))
    %% vars  
         omega_m = vic.vel(4:6);  
@@ -100,3 +103,6 @@ Z = z;
 tv_old = vic.t;
 end
 end
+end
+
+

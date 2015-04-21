@@ -52,10 +52,11 @@ A_t2 = varargin{3};
 U_t2 = varargin{4}; 
 Xd =   varargin{5}; 
 
-if(isempty(mu)) 
+
+if(isempty(mu) && ~isempty(sensor)) 
     %estimate initial pose from vicon vel readings 
     [est_pos, est_eul]=estimate_pose(sensor,world_points,K); 
-    [est_vel, est_omg] = estimate_vel(sensor,world_points,K); 
+%     [est_vel, est_omg] = estimate_vel(sensor,world_points,K); 
      b_a = [0;0;0]; 
      b_g = [0;0;0]; 
      sig = eye(15); 
@@ -63,15 +64,17 @@ if(isempty(mu))
      n_a = [0;0;0]; 
      n_g =[0;0;0]; 
      ts_old = sensor.t; 
-     mu = [est_pos ;est_eul; est_vel;b_g;b_a];
-     Z = [est_pos ;est_vel; est_eul];
+     mu = [est_pos ;est_eul; 0;0;0;b_g;b_a];
      X = [mu(1:3); mu(7:9); mu(4:6)];
-
-else %% need to make a case where we have 0 vicon readings or 0 sensor 
+     Z = [est_pos;est_eul]; 
+else if (isempty(mu) && isempty(sensor))
+        X = []; 
+        Z = []; 
+      
+else  %% need to make a case where we have 0 vicon readings or 0 sensor 
    if(~isempty(sensor)) 
         [est_pos, est_eul] = estimate_pose(sensor,world_points,K); 
-        [est_vel, est_omg] = estimate_vel(sensor,world_points,K); 
-        z = [est_pos;est_eul;est_vel]; 
+        z = [est_pos;est_eul]; 
         C = [eye(3) zeros(3,3) zeros(3,3) zeros(3,3) zeros(3,3); zeros(3,3) eye(3) zeros(3,3) zeros(3,3) zeros(3,3); zeros(3,3) zeros(3,3) eye(3) zeros(3,3) zeros(3,3)]; 
         C = C(1:6,:);
 %         W = eye(9); 
@@ -109,5 +112,6 @@ else %% need to make a case where we have 0 vicon readings or 0 sensor
 X = [mu(1:3); mu(7:9); mu(4:6)]; 
 Z = z; 
 ts_old = sensor.t;
+    end
 end
 end
