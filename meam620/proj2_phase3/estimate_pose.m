@@ -28,6 +28,7 @@ K = varargin{2};
 if ( isempty(sensor.id))
     pos = []; 
     eul = []; 
+    error('im here'); 
 else
 % First construct A1 - A5 
 X_w = [world_points.p0(1,:)', world_points.p1(1,:)', world_points.p2(1,:)', world_points.p3(1,:)', world_points.p4(1,:)']; 
