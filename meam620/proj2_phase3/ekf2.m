@@ -84,7 +84,7 @@ else  %% need to make a case where we have 0 vicon readings or 0 sensor
         R = eye(9);
         W = eye(6);
 %         R = R(1:6,1:6);
-        R = diag([0.0159 0.0120  0.0116  0.0020  0.0022  0.0021].^2); 
+        R = diag([0.0159 0.0120  0.0116  0.0020  0.0022  0.0021].^3); 
         
         dts = sensor.t - ts_old;
         phi =   mu(4);
@@ -105,7 +105,7 @@ else  %% need to make a case where we have 0 vicon readings or 0 sensor
         %        X_d = Xd(accel(1),accel(2),accel(3),b_g(1),b_g(2),b_g(3),n_a(1),n_a(2),n_a(3),0,0,0,0,0,0,n_g(1),n_g(2),n_g(3),phi,psi,theta,omega_m(1),omega_m(2),omega_m(3));
         
 %         Q = eye(12)*1e-2;
-        Q = eye(12);
+        Q = eye(12)*1e-5;
 %         Q = diag([0.0159 0.0120  0.0116  0.0020  0.0022  0.0021 1e-5 1e-5 1e-5 1e-5 1e-5 1e-5]);
 
         %% prediction
