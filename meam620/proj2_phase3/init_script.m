@@ -12,18 +12,18 @@ K = [314.1779 0         199.4848; ...
 0         314.2218  113.7838; ...
 0         0         1]; 
 %%
-n_v= sym('n_v',[3,1],'real');
-n_g = sym ('n_g',[3,1],'real');
-n_a = sym('n_a',[3,1],'real'); 
-vel = sym ('v',[3,1],'real');
-omega = sym('w',[3,1],'real');
-b_g = sym('bg',[3,1],'real'); 
-b_a = sym('ba',[3,1],'real'); 
+n_v= sym('n_v',[3,1]);
+n_g = sym ('n_g',[3,1]);
+n_a = sym('n_a',[3,1]); 
+vel = sym ('v',[3,1]);
+omega = sym('w',[3,1]);
+b_g = sym('bg',[3,1]); 
+b_a = sym('ba',[3,1]); 
 grav = [0;0;-9.81]; 
-syms x y z phi theta psi 'real' 
-accel_in = sym('a_m',[3,1],'real'); 
-n_bias_gyro = sym('n_bg',[3,1],'real'); 
-n_bias_accel = sym('n_ba',[3,1],'real'); 
+syms x y z phi theta psi  
+accel_in = sym('a_m',[3,1]); 
+n_bias_gyro = sym('n_bg',[3,1]); 
+n_bias_accel = sym('n_ba',[3,1]); 
 % syms y
 % syms z
 % syms phi
@@ -46,10 +46,10 @@ x_dot2 = [ vel - n_v; (G)\(omega-b_g-n_g);grav+ R*(accel_in -b_g - n_a); n_bias_
 Xd_2 = matlabFunction(x_dot2);  
 Xd_1 = matlabFunction(x_dot1); 
 j1 = jacobian(x_dot1,[x,y,z,phi,theta,psi]); 
-j2 = jacobian(x_dot1,[n_v' n_g']);
-j3 = jacobian(x_dot2,[x,y,z,phi,theta,psi,vel' b_g' b_a']); % depnding on vel
+j2 = jacobian(x_dot1,[n_v; n_g]);
+j3 = jacobian(x_dot2,[x;y;z;phi;theta;psi;vel; b_g; b_a;]); % depnding on vel
 % j3 = jacobian(x_dot2,[x,y,z,phi,theta,psi, b_g', b_a']); %not depnding on vel
-j4 = jacobian(x_dot2,[n_g' n_a' n_bias_gyro' n_bias_accel']); 
+j4 = jacobian(x_dot2,[n_g; n_a; n_bias_gyro; n_bias_accel]); 
 
 A_t1 = matlabFunction(j1); 
 U_t1 = matlabFunction(j2);  
