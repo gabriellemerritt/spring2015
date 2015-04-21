@@ -34,8 +34,8 @@ K = varargin{2};
 if ( isempty(sensor.id))
    counter = counter +1;
 
-    vel = zeros(3,1); 
-    omg = zeros(3,1); 
+    vel = []; 
+    omg = [];
     t_old = sensor.t; 
 elseif (isempty(corners))  
     corners = corner(sensor.img,1000);
