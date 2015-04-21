@@ -91,7 +91,7 @@ else  %% need to make a case where we have 0 vicon readings or 0 sensor
         sig = (F_t * sig *F_t')+ (V_t*Q*V_t');
     end
     %% update
-    if(~isempty(sensor.id))
+    if(~sensor))
         [est_pos, est_eul] = estimate_pose(sensor,world_points,K);
         z = [est_pos; est_eul];
         C = eye(6);

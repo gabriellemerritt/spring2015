@@ -75,7 +75,7 @@ elseif (isempty(mu) && ~sensor.is_ready)
     Z = [];
     
 else  %% need to make a case where we have 0 vicon readings or 0 sensor
-    if(~isempty(sensor))
+    if(~isempty(sensor.id))
         [est_pos, est_eul] = estimate_pose(sensor,world_points,K);
         z = [est_pos;est_eul];
         C = [eye(3) zeros(3,3) zeros(3,3) zeros(3,3) zeros(3,3); zeros(3,3) eye(3) zeros(3,3) zeros(3,3) zeros(3,3); zeros(3,3) zeros(3,3) eye(3) zeros(3,3) zeros(3,3)];
