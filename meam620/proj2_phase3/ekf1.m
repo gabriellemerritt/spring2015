@@ -104,7 +104,7 @@ else  %% need to make a case where we have 0 vicon readings or 0 sensor
     end
     %mu 6x1
     X = mu;
-    Z = z;
+    Z = [];
     tv_old = vic.t;
     
 end

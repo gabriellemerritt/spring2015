@@ -113,7 +113,7 @@ else  %% need to make a case where we have 0 vicon readings or 0 sensor
     end
     %mu 6x1
     X = [mu(1:3); mu(7:9); mu(4:6)];
-    Z = z;
+    Z = [];
     ts_old = sensor.t;
 end
 
