@@ -62,6 +62,7 @@ if(isempty(mu) && sensor.is_ready)
     
 else if (isempty(mu) && ~sensor.is_ready)
         X = [];
+        Z = []; 
         
     else  %% need to make a case where we have 0 vicon readings or 0 sensor
         if (~isempty(vic))
