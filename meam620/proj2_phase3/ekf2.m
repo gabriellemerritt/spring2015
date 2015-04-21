@@ -53,7 +53,7 @@ U_t2 = varargin{4};
 Xd =   varargin{5}; 
 
 
-if(isempty(mu) && ~sensor.is_ready)
+if(isempty(mu) && sensor.is_ready)
     %estimate initial pose from vicon vel readings 
     [est_pos, est_eul]=estimate_pose(sensor,world_points,K); 
 %     [est_vel, est_omg] = estimate_vel(sensor,world_points,K); 
@@ -67,7 +67,7 @@ if(isempty(mu) && ~sensor.is_ready)
      mu = [est_pos ;est_eul; 0;0;0;b_g;b_a];
      X = [mu(1:3); mu(7:9); mu(4:6)];
      Z = [est_pos;est_eul]; 
-else if (isempty(mu) && isensor.is_ready)
+else if (isempty(mu) && ~sensor.is_ready)
         X = []; 
         Z = []; 
       

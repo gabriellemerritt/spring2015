@@ -50,7 +50,7 @@ A_t1 = varargin{3};
 U_t1 = varargin{4};
 Xd = varargin{5};
 
-if(isempty(mu) && ~sensor.is_ready)
+if(isempty(mu) && sensor.is_ready)
     %estimate initial pose from vicon vel readings
     tv_old = vic.t;
     
@@ -60,7 +60,7 @@ if(isempty(mu) && ~sensor.is_ready)
     sig = eye(6);
     mu = X;
     
-else if (isempty(mu) && sensor.is_ready)
+else if (isempty(mu) && ~sensor.is_ready)
         X = [];
         
     else  %% need to make a case where we have 0 vicon readings or 0 sensor
