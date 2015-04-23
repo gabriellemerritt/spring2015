@@ -29,6 +29,7 @@ time_tol = 30;
 % parameters for simulation
 params = nanoplus();
 
+
 %% **************************** FIGURES *****************************
 fprintf('Initializing figures...\n')
 h_fig = figure;
@@ -38,9 +39,11 @@ grid on
 view(3);
 xlabel('x [m]'); ylabel('y [m]'); zlabel('z [m]')
 quadcolors = lines(nquad);
-
+movieObj = VideoWriter('newfile.mp4');
+movieObj.FrameRate = 60;
+open(movieObj);
 set(gcf,'Renderer','OpenGL')
-
+set(gca,'nextplot','replacechildren');
 %% *********************** INITIAL CONDITIONS ***********************
 fprintf('Setting initial conditions...\n')
 max_iter  = 5000;      % max iteration
@@ -64,7 +67,8 @@ x         = x0;        % state
 
 pos_tol   = 0.01;
 vel_tol   = 0.01;
-
+set(gca,'nextplot','replacechildren');
+% set(gcf,'Renderer','zbuffer');
 %% ************************* RUN SIMULATION *************************
 fprintf('Simulation Running....')
 % Main loop
@@ -113,8 +117,10 @@ for iter = 1:max_iter
     if terminate_check(x, time, stop, pos_tol, vel_tol, time_tol)
         break
     end
+    frame = getframe;
+    writeVideo(movieObj,frame);
 end
-
+close(movieObj);
 %% ************************* POST PROCESSING *************************
 % Truncate xtraj and ttraj
 for qn = 1:nquad

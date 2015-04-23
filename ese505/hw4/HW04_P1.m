@@ -25,7 +25,7 @@ mag = squeeze(mag); pha=squeeze(pha);   % convert output to simple vectors
 wdata = wB;
 magdata = amp_B;
 delta_t_data = delt_tB;
-phadata = test2;
+phadata = phaseB;
 %
 % make pretty plots of the frequency response
 %

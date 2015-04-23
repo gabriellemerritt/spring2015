@@ -14,7 +14,6 @@ if(isempty(delt_tA))
 end
 timeA = scope_A.time; 
 delt_tA = [delt_tA; ((timeA(end) - timeA(1))/length(timeA))]; 
-[~,idxA] = findpeaks(
 FsA = 1/((timeA(end) - timeA(1))/length(timeA)); 
 Axft = fft(scope_A.signals.values(:,2)); 
 inAxft = fft(scope_A.signals.values(:,1)); 
@@ -24,13 +23,12 @@ inAxft = inAxft(2:end,:);
 [max_valA2, idxA2] = max(abs(inAxft)); 
 
 wA = [wA;(FsA*(idxA-1)/length(scope_A.signals.values(:,2)))]; 
-phaseA = [phaseA; dta*(-360)]; 
+phaseA = [phaseA; unwrap(angle(inAxft(idxA2)),-pi) - unwrap(angle(Axft(idxA)),-pi)]; 
 [peaksA,indcA] = findpeaks(scope_A.signals.values(:,2));
 amp_A = [amp_A;peaksA(round(length(peaksA)/2))]; 
 %%
 timeB = scope_B.time; 
 delt_tB = [delt_tB; ((timeB(end) - timeB(1))/length(timeB))]; 
-dtb = ((timeB(end) - timeB(1))/length(timeB)); 
 FsB= 1/((timeB(end) - timeB(1))/length(timeB)); 
 Bxft = fft(scope_B.signals.values(:,2)); 
 inBxft = fft(scope_B.signals.values(:,1)); 
@@ -40,7 +38,7 @@ Bxft = Bxft(2:end,:);
 [max_valB2, idxB2] = max(abs(inBxft)); 
 
 wB = [wB;(FsB*(idxB-1)/length(scope_B.signals.values(:,2)))]; 
-phaseB = [phaseB;dtb*(-360)]; 
+phaseB = [phaseB;delt_tB*(-360)]; 
 [peaksB,indcB] = findpeaks(scope_B.signals.values(:,2));
 
 amp_B=[amp_B;peaksB(round(length(peaksB)/2))]; 
