@@ -29,7 +29,7 @@ for i = 1:dataL
         vel(i, :) = v';
         omg(i, :) = w';
     end
-    i
+    
 end
 t = toc;
 disp(['Time to completion: ', num2str(t)])

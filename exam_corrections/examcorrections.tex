@@ -1,0 +1,172 @@
+\documentclass[11pt,english]{article}
+
+\usepackage[latin9]{inputenc}
+\usepackage[letterpaper]{geometry}
+\geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{latexsym}
+\usepackage{xspace}
+\usepackage{pdflscape}
+\usepackage[hyphens]{url}
+\usepackage[colorlinks]{hyperref}
+\usepackage{enumerate}
+\usepackage{ifthen}
+\usepackage{float}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage{algorithm2e}
+
+\newcommand{\rthree}{\mathbb{R}^3}
+\title{ESE 505: Exam Corrections\\
+Due:  May 13}
+ \author{Gabrielle Merritt}
+ 
+\date{}
+
+\begin{document}
+\maketitle
+\section{C}
+Because  $U_c$ can be anything before it is bounded in between $u_min$ and $u_max$ A cannont be the answer. This also rules out D. Since the block diagram matches closely to an anti windup system and because we don't know if $u_c$ is linear or not, the best answer is C 
+\section{C}
+$\frac{dy}{dt}$ suggests this is a first order differential equation, and the $sin(3y)$ makes this non linear so A and B are correct. For the initial condition y =0 and $\frac{dy}{dt} = 0 $ we can asume the inital slope would be equal to two. Therefore the best answer is C. 
+\section{A} 
+If we look at the transfer function 
+$\frac{K}{s(s^2+s+1)(s+2)} $ we see that we have four poles in this system, each pole contributes -90 to the phase diagram, so we cross the -180 margin in this equation: $s^2+s+1$. The natural frequency for this pole is $\omega_n = sqrt(1)$ which means that $T_u = 2*pi* 1$ which is greater than 6. Making A the best answer. 
+\section{C} 
+If we write out the closed loop system we have 
+$$\frac{K}{(s+4)(s+1) + K}$$
+$$\frac{K}{s^2+3s -4 +K}$$ 
+Since one of the poles crosses the imaginary axis we know that the system is not open loop stable, and from the equation above we can see it will be closed loop stable while $K \geq 4$ so C is our best answer. 
+\section{D}
+\section{A}
+Since the problem is in state space representation we can find the transfer funtion by finding $X(s) = ( sI - A)^{-1} BU(s) $. If we substitute X(s) in the output equation. 
+$$Y(s) = CX(s) + DU(s)$$
+$$\frac{Y(s)}{U(s)} = C((sI - A)^{-1}B + D$$
+Where D is 0, B is $\begin{bmatrix} 0 \\ \frac{1}{L}\end{bmatrix}$ and A is $\begin{bmatrix}
+\frac{-b}{J} & \frac{K}{J} \\ \frac{-K}{L} & \frac{-R}{L}
+\end{bmatrix}$
+\section{D}
+If we re write the block diagram as a  closed loop transfer function we have 
+$\frac{K(s+1)}{s^2(s+3.6) + K(s+1)}$ we can see that for $ K > 0 $ the system is stable. For the open loop form we will have a set of complex poles.
+Since in open loop we can see that an integrator term in the transfer function we can assume it will have 0 steady state error, therefore the best answer is D. 
+\section{A}
+If we look at the block diagram we see that 
+$$ T_w - T_dis - (Brake Loss + some transfer function) = T_total$$ 
+$$ T_total\frac{1}{J_vs} =\omega_w $$
+If we re arrange and take the inverse laplace we have 
+$T_total = \frac{d\omega_w}{dt}  J_v $  
+\section{A}
+If we consider a step input, the desired response is the value at $t = \infty$ or $s = 0$ , so If we set the limit as s goes to 0 we have
+$$\lim_{s->0} G(s) =  \frac{0}{4} = 0 $$ 
+so our desired output is 0 angular velocity 
+
+\section{A}
+In the diagram we see that we have a steady state error, so we know our transfer function cannot have an integrator term. We can also see that as t approaches infinity we are trying to approach 1. So A has a transfer function which approaches 1 as s goes to 0, and does not have an integral gain.  
+\section{A}
+If we look at the block diagram we see that we have sensor updates in the feedback loop, which means our sensor updates are out of phase with our input, and will create a slow response for our controller. In order to attain closed loop stability having a lead compensator will increase our phase margin and provide the system with closed loop stability 
+\section{D}
+We know A is true because Roll rate has no complex term so it rests on the negative real axis which means its a stable first order. B is true because Forward velocity is on the right side of the imaginary axis which means its unstable. C is true because using the equation $ T_{oscillation} = \frac{2*\pi}{\omega_{n} }$  we get around 8.5 seconds. Therefore D all answers are true 
+\section{B} 
+We have an open loop transfer function of 
+$\frac{10K}{s(s +1)} $ 
+to find a phase margin of $45\deg $ we have the equation 
+$\arctan(TF) - -180 = 45\deg$ 
+$\arctan(TF) = -135\deg$ 
+$$ \frac{10K}{j\omega(j\omega+1)} = \tan(-135) = 1 $$
+I solved the previous problem and found $\omega$ = 1 rad 
+With that we have K = .2 which is closest to 1.4
+\section{A} 
+By finding closed loop transfer function setting the unity gain to 0db and replacing s with j $\omega$ I was left with 
+$$ 10K = \omega^4 ( \omega^2 +1) + 10K $$
+which simplified to  
+$\omega^2 +1 = 0 $ 
+so $\omega = 1$ rad per second 
+\section{A} 
+To increase the cross over frequency and maintain the same phase margin we want to have a lead compensator.  which is in the form  $\frac{\frac{s}{z} +1}{\frac{s}{p}} $ where p is greater than z. In this case  $\frac{1}{T_1} < \frac{1}{T_2}$ which means $T_1$ must be greater than $T_2$. 
+
+\section{C}
+Since there are still a significant amount of  that reach over $50 \% $ of the original peak amplitude this system is very under damped. The other damping ratios are to high to correspond. 
+\section{D}
+D is the most reasonable answer because by under estimating the damping for the system we can get a very accurate analysis of the poles and behaviour of the system, without relying on damping for stability. 
+ \section{D} 
+ A is correct because  the matrix $\begin{bmatrix}
+ B & AB & ... & A^{n-1}B
+ \end{bmatrix}$ with rank n  is the mathematical definition for controllability.
+ B is also a definition of controllability, and C is correct because if the matrix is controllable we are able to pick our where we place our poles which are the closed loop eigen values. So the answer is D all of the above.   
+ 
+\section{D} 
+The answer is D because A must be n by n , B must be  n by 1 and to add these together W must also be n by 1. 
+
+\section{A} 
+The answer is A because we see bumps and dips in both the gain margin and phase margin which are typical for a lead lag compensator. 
+\section{A} 
+A lidar is most similar to the ping device because they both rely on the reflection of the signal off of a surface. 
+\section{A} 
+If we write a capacitor as a transfer function we have 
+$ \frac{1}{Cs} $ which effectively means we have a pole for each capacitor in the system. Buffers don't limit voltage so B and D can't be true, while C maybe true  A is the most accurate for this system.  
+\section{B} 
+Again a capacitor can be represented as the transfer function $ \frac{1}{Cs} $ so we have a pole for each capacitor, in this case 2 poles. 
+\section{B} 
+\section{C}
+Because there was zero steady state error this suggest she was using a PI controller, and the crashing into the back of the lead train was caused by wind up in the error which caused the integrator to over compensate.
+\section{A} 
+There is very little over shoot with the quadrotor, and it settles rather quickly which means the gains are pretty well tuned. 
+\section{C}
+In the Phase protion of the bode plot since we know that the phase angle settles at -180 degrees there must be two poles, and since the Gain bode plot does not have any changes in slope we can assume there are no zeros so only C meets both of these conditions 
+\section{C} 
+A is true because it is the definition of a root locus diagram, B is also true because on the graph we can see for some finite value of K the poles cross the imaginary axis. D is also true because we can see there is exactly one closed loop pole on the real axis, which means our answer is C. 
+\section{B} 
+The time constant is when the graph reaches $63\%$ of the final output at t = $\infty$. So $.63 *2 $ is about 1.25 which occurs near t = 4 seconds. 
+\section{D}
+All of the above because the system show instability for some finite value of K , and since the transfer function includes a time delay the root locus looks like a first order pade approximation , and we can get a value for the gains that occur on the right side of the imaginary axis. 
+\section{A}
+Since we are using a first order pade approximation the radius of the circle is slightly smaller than using $e^{Ts}$ and therefore under estimates natural frequencies and over estimates the gain. 
+\section{C}
+C because it needs to be a function of pi in order to be an exact answer since we can write out $e^{-Ts}$ in terms of sine and cosine and we have no  imaginary part at neutral stability. 
+\section{B}
+On the body plot the natural frequency is about 45 radians per second. 
+For B if we take the magnitude of the transfer function and set it equal to one we find the natural frequency is also close to 45. 
+$$ \| \frac{48}{s + 12} \|  = 1 = 0 dB$$ 
+$$ 48^2 = s^2 + 24s + 12^2 $$ 
+$$\omega_n  = \|\sqrt[2]{48^2 - 12^2} \| =46.5$$
+
+\section{B}
+Peak to peak time is about 8 seconds 
+$ \omega =\frac{2\pi}{8}  $ which is close to about .8 radians per second 
+\section{A}   
+If we take the amplitude of the input and output peaks we get M 
+in this case its $ \frac{2.8}{2 } = 1.4 $ if we look at the Magnitude to Decibel chart we see that is about 3 dB 
+\section{A}  
+If we look at the graph we can see the output is lagging so the phase should be negative, and starts rising half way between the 0 and the peak of the input which suggest the phase is $-45\deg$ 
+\section{B}
+Since currently the system is not stable since $\omega_{180} < \omega_{cross_over} $  so we know the gain has to be lower than 18. For neutral stability the crossover frequency  has to equal the 180 phase frequency. so if we draw on the graph and keep the same slopes we see there is about 5 dB difference between the two lines. so at 0 phase margin the ratio is 12.5 to 7.5 which is about 1.666 so to achieve the same ratio in magnitude we have to have a K of about 10. so  18/10 ~~ 1.666 so the best answer is B. 
+
+\section{A}
+Using the same logic as above since the gain is now a third of the original gain we start the magnitude plot a third of the way down (close to 4db instead of 12.5db) and keep the same slope, we see the cross over frequency is around 10 radians per second. and if we look on the phase plot 10 radians is around -100 phase, which means we have a margin of around 80 degrees. 
+
+\section{B}
+Since the  cross over frequency needs move from 9~10 radians per second to closer to 20 so the difference in frequency is $\omega = 11$ if we apply to the provide equation $\frac{1.8}{\omega_n} $ we have about 1.6 seconds which B is the closest answer. 
+\section{}
+The code forces the each iteration of the loop to be exactly 50 milliseconds 
+\section{}
+If we changed the the deltaT of the loop function our closed loop response would be significantly delayed and out of phase. In order to account for it we would have a compensator of some sort.
+\section{}
+We could have a lead lag compensator to make up for how slowly our control loop is running. 
+\section{} 
+string stability is where any disturbance in the lead train will not grow larger as it propagates to the other followers. 
+\section{}
+For the Project the condition for string stability is 
+$H(s) = \frac{V_i(S)}{V_{i-1}(S)} $ 
+where 
+$|H(j\omega)| \leq 0 $ for all frequencies. 
+or as the string stability paper suggests : 
+$X_{i,des} = X_{i-1} - L - hV_i $ 
+Where L is the following distance and h is the time gap. 
+
+\end{document}

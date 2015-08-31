@@ -12,7 +12,7 @@ clc
 fileID =fopen(filename,'r'); 
 format_spec= '%s%f%f%f%f%f%f%f%f%f';
 % C= textscan(fileID,format_spec);
-C=textscan(fileID,format_spec,'whitespace',' ', 'CommentStyle',{'#'});
+C=textscan(fileID,format_spec, 'CommentStyle',{'#'});
 [board_bound, xmin, ymin, zmin, xmax, ymax, zmax,r,g,b] = C{1,:}; 
 XYZ = [xmin ymin zmin xmax ymax zmax]; 
 for l = 1:length(board_bound)

@@ -10,9 +10,9 @@ close all;
 freq_A = .6357;
 damping_A = 0.1216;
 % num = .46*[1]     % you have to figure out num & den to match data
-num = [900       24150      183000      607500      750000]
+num = [105.25]
 % den = [1 0 .46];
-den =  [ 6         167        1490        6329       12988 10100];
+den =  [ 1/.65 1];
 G = tf(num,den);
 w = logspace(-1,10,1000); % learn the logspace command - set desired range
 [mag,pha]=bode(G,w);        % bode gives you magnitude and phase

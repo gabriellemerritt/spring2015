@@ -77,6 +77,14 @@ x = x0;        % state
 
 %% ************************* RUN SIMULATION *************************
 fprintf('Simulation Running....\n')
+writerObj = VideoWriter('astar1_planning','MPEG-4'); 
+writerObj.FrameRate = 10; 
+writerObj.Quality = 100; 
+% writerObj.Height = 1080; 
+% writerObj.Width = 1920; 
+open(writerObj);
+set(gca,'nextplot','replacechildren');
+set(gcf,'Renderer','zbuffer');
 for iter = 1:max_iter
     timeint = time:tstep:time+cstep;
     tic;
@@ -100,6 +108,8 @@ for iter = 1:max_iter
         % Update quad plot
         desired_state = trajhandle(time + cstep, qn);
         QP{qn}.UpdateQuadPlot(x{qn}, [desired_state.pos; desired_state.vel], time + cstep);
+        frame = getframe;
+        writeVideo(writerObj,frame);
     end
 
     set(h_title, 'String', sprintf('iteration: %d, time: %4.2f', iter, time + cstep))
@@ -120,6 +130,7 @@ for iter = 1:max_iter
 end
 
 fprintf('Simulation Finished....\n')
+
 
 %% ************************* POST PROCESSING *************************
 % Truncate xtraj and ttraj
@@ -143,5 +154,6 @@ if vis
         plot_state(h_vel{qn}, QP{qn}.state_des_hist(4:6,:), QP{qn}.time_hist, 'vel', 'des');
     end
 end
+close(writerObj);
 
 end
